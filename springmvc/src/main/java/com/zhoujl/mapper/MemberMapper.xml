@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhoujl.mapper.MemberMapper">
+
+	<resultMap type="Member" id="MemberResult">
+		<id property="id" column="member_id" />
+		<result property="name" column="member_name" />
+		<result property="email" column="member_email" />
+		<result property="mobile" column="member_mobile" />
+	</resultMap>
+
+	<select id="findAllMembers" resultMap="MemberResult">
+		select * from member
+	</select>
+
+	<select id="findMemberById" resultMap="MemberResult">
+		select * from member where member_id=#{id}
+	</select>
+
+	<insert id="insertMember" parameterType="Member">
+		insert into
+		member (member_id, member_name, member_email, member_mobile)
+		values (#{id},#{name},#{email},#{mobile})
+	</insert>
+
+	<update id="updateMember" parameterType="Member">
+		update member set
+		member_name = #{name},
+		member_email = #{email},
+		member_mobile = #{mobile}
+		where member_id = #{id}
+	</update>
+
+	<delete id="deleteMember" parameterType="int">
+		delete from member where member_id = #{id}
+	</delete>
+</mapper>
+ 
