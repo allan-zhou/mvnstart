@@ -1,4 +1,4 @@
-package com.zhoujl.mapper;
+package com.zhoujl.dao;
 
 import java.util.List;
 

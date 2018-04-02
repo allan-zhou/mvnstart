@@ -7,8 +7,9 @@
 	<properties resource="db.properties" />
 
 	<typeAliases>
-		<typeAlias alias="Member" type="com.zhoujl.pojo.Member" />
-		<!-- <package name="com.mybatis3.domain"/> -->
+		<!-- <typeAlias alias="Member" type="com.zhoujl.pojo.Member" /> -->
+		<!-- <typeAlias alias="Order" type="com.zhoujl.pojo.Order" /> -->
+		<package name="com.zhoujl.pojo"/>
 	</typeAliases>
 
 	<environments default="development">
@@ -25,6 +26,7 @@
 
 	<mappers>
 		<mapper resource="com/zhoujl/mapper/MemberMapper.xml" />
+		<mapper resource="com/zhoujl/mapper/OrderMapper.xml" />
 	</mappers>
 
 </configuration>

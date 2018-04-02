@@ -54,7 +54,12 @@
 				<artifactId>mysql-connector-java</artifactId>
 				<version>6.0.6</version>
 			</dependency>
-		
+		    <!-- druid连接池包 -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid</artifactId>
+				<version>1.1.0</version>
+			</dependency>
 			<!-- Servlet Library -->
 			<dependency>
 				<groupId>javax.servlet</groupId>
