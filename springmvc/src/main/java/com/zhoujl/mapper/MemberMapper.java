@@ -11,4 +11,5 @@ public interface MemberMapper {
 	void insertMember(Member member);
     void updateMember(Member member);
     void deleteMember(int id);
+    void increaseOrderNumber(int memberId);
 }

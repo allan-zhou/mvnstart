@@ -6,14 +6,15 @@
 <mapper namespace="com.zhoujl.mapper.MemberMapper">
 
 	<resultMap type="Member" id="MemberResult">
-		<id property="id" column="member_id" />
-		<result property="name" column="member_name" />
-		<result property="email" column="member_email" />
-		<result property="mobile" column="member_mobile" />
+		<id property="memberId" column="member_id" />
+		<result property="memberName" column="member_name" />
+		<result property="memberEmail" column="member_email" />
+		<result property="memberMobile" column="member_mobile" />
+		<result property="orderCount" column="order_count" />
 	</resultMap>
 
     <sql id="Base_Column_List" >
-      member_id, member_name, member_email, member_mobile
+        member_id, member_name, member_email, member_mobile, order_count
     </sql>
     
 	<select id="findAllMembers" resultMap="MemberResult">
@@ -25,25 +26,46 @@
 	<select id="findMemberById" resultMap="MemberResult">
 		select
 		<include refid="Base_Column_List" />
-		from member where member_id=#{id}
+		from member where member_id=#{memberId}
 	</select>
 
 	<insert id="insertMember" parameterType="Member">
-		insert into
-		member (member_id, member_name, member_email, member_mobile)
-		values (#{id},#{name},#{email},#{mobile})
+		insert into member
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="memberId != null" >member_id,</if>
+			<if test="memberName != null" >member_name,</if>
+			<if test="memberEmail != null" >member_email,</if>
+			<if test="memberMobile != null" >member_mobile,</if>
+			<if test="orderCount != null" >order_count,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="memberId != null" >#{memberId,jdbcType=INTEGER},</if>
+			<if test="memberName != null" >#{memberName,jdbcType=VARCHAR},</if>
+			<if test="memberEmail != null" >#{memberEmail,jdbcType=VARCHAR},</if>
+			<if test="memberMobile != null" >#{memberMobile,jdbcType=VARCHAR},</if>
+			<if test="orderCount != null" >#{orderCount,jdbcType=INTEGER},</if>
+		</trim>
 	</insert>
 
 	<update id="updateMember" parameterType="Member">
-		update member set
-		member_name = #{name},
-		member_email = #{email},
-		member_mobile = #{mobile}
-		where member_id = #{id}
+		update member
+	    <set >
+			<if test="memberName != null" >member_name = #{memberName,jdbcType=VARCHAR},</if>
+			<if test="memberEmail != null" >member_email = #{memberEmail,jdbcType=VARCHAR},</if>
+			<if test="memberMobile != null" >member_mobile = #{memberMobile,jdbcType=VARCHAR},</if>
+			<if test="orderCount != null" >order_count = #{orderCount,jdbcType=INTEGER},</if>
+	    </set>
+	    where member_id = #{memberId,jdbcType=INTEGER}
 	</update>
 
 	<delete id="deleteMember" parameterType="int">
-		delete from member where member_id = #{id}
+		delete from member where member_id = #{memberId,jdbcType=INTEGER}
 	</delete>
+	
+	<update id="increaseOrderNumber" parameterType="int">
+		update member
+		set order_count = order_count + 1
+	    where member_id = #{memberId,jdbcType=INTEGER}
+	</update>
 </mapper>
  

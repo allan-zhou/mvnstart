@@ -1,39 +1,55 @@
 package com.zhoujl.pojo;
 
 public class Member {
-	private int id;
-	private String name;
-	private String email;
-	private String mobile;
-	
-	
-	public int getId() {
-		return id;
+	private int memberId;
+	private String memberName;
+	private String memberEmail;
+	private String memberMobile;
+	private int orderCount;
+
+	public int getMemberId() {
+		return memberId;
 	}
-	public void setId(int id) {
-		this.id = id;
+
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
 	}
-	public String getName() {
-		return name;
+
+	public String getMemberName() {
+		return memberName;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
-	public String getEmail() {
-		return email;
+
+	public String getMemberEmail() {
+		return memberEmail;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
 	}
-	public String getMobile() {
-		return mobile;
+
+	public String getMemberMobile() {
+		return memberMobile;
 	}
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
+
+	public void setMemberMobile(String memberMobile) {
+		this.memberMobile = memberMobile;
 	}
-	
+
+	public int getOrderCount() {
+		return orderCount;
+	}
+
+	public void setOrderCount(int orderCount) {
+		this.orderCount = orderCount;
+	}
+
 	@Override
 	public String toString() {
-		return "Member [id=" + id + ", name=" + name + ", email=" + email + ", mobile=" + mobile + "]";
+		return "Member [memberId=" + memberId + ", memberName=" + memberName + ", memberEmail=" + memberEmail
+				+ ", memberMobile=" + memberMobile + ", orderCount=" + orderCount + "]";
 	}
 }

@@ -17,6 +17,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zhoujl.constant.ApiResult;
 import com.zhoujl.pojo.Order;
+import com.zhoujl.service.MemberService;
 import com.zhoujl.service.OrderService;
 
 @Controller
@@ -44,7 +45,6 @@ public class OrderApi {
 	@ResponseBody
 	public String getOrderById(@PathVariable("id") int id) throws JsonProcessingException {
 		logger.debug(String.valueOf(id));
-
 		Order order = orderService.getOrderById(id);
 
 		ObjectMapper mapper = new ObjectMapper();
@@ -55,11 +55,10 @@ public class OrderApi {
 	@RequestMapping(method = RequestMethod.POST, consumes = { "application/json" }, produces = {
 			"application/json; charset=utf-8" })
 	@ResponseBody
-	public String createOrder(@RequestBody Order order) throws JsonProcessingException {
-		logger.debug(order.toString());
-
+	public String addOrder(@RequestBody Order order) throws JsonProcessingException {
+		logger.warn(order.toString());
 		orderService.addOrder(order);
-
+		
 		ObjectMapper mapper = new ObjectMapper();
 		ApiResult apiResult = new ApiResult();
 		apiResult.setResultCode(200);
@@ -72,20 +71,9 @@ public class OrderApi {
 			"application/json; charset=utf-8" })
 	@ResponseBody
 	public String updateOrder(@PathVariable("id") int id, @RequestBody Order order) throws JsonProcessingException {
+		order.setOrderId(id);
 		logger.debug(order.toString());
-
-		Order oldOrder = orderService.getOrderById(id);
-
-		if (order.getMemberId() != 0) {
-			oldOrder.setMemberId(order.getMemberId());
-		}
-		if (order.getOrderNumber() != null) {
-			oldOrder.setOrderNumber(order.getOrderNumber());
-		}
-		if (order.getGoodsName() != null) {
-			oldOrder.setGoodsName(order.getGoodsName());
-		}
-		orderService.updateOrder(oldOrder);
+		orderService.updateOrder(order);
 
 		ObjectMapper mapper = new ObjectMapper();
 		ApiResult apiResult = new ApiResult();

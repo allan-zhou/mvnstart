@@ -55,9 +55,8 @@ public class MemberApi {
 	@RequestMapping(method = RequestMethod.POST, consumes = { "application/json" }, produces = {
 			"application/json; charset=utf-8" })
 	@ResponseBody
-	public String createMember(@RequestBody Member member) throws JsonProcessingException {
+	public String addMember(@RequestBody Member member) throws JsonProcessingException {
 		logger.debug(member.toString());
-
 		memberService.addMember(member);
 
 		ObjectMapper mapper = new ObjectMapper();
@@ -72,20 +71,9 @@ public class MemberApi {
 			"application/json; charset=utf-8" })
 	@ResponseBody
 	public String updateMember(@PathVariable("id") int id, @RequestBody Member member) throws JsonProcessingException {
+		member.setMemberId(id);
 		logger.debug(member.toString());
-
-		Member oldMember = memberService.getMemberById(id);
-
-		if (member.getName() != null) {
-			oldMember.setName(member.getName());
-		}
-		if (member.getEmail() != null) {
-			oldMember.setEmail(member.getEmail());
-		}
-		if (member.getMobile() != null) {
-			oldMember.setMobile(member.getMobile());
-		}
-		memberService.updateMember(oldMember);
+		memberService.updateMember(member);
 
 		ObjectMapper mapper = new ObjectMapper();
 		ApiResult apiResult = new ApiResult();
@@ -98,7 +86,7 @@ public class MemberApi {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, consumes = { "application/json" }, produces = {
 			"application/json; charset=utf-8" })
 	@ResponseBody
-	public String deleteMember(@PathVariable("id") int id) throws JsonProcessingException {
+	public String deleteMemberById(@PathVariable("id") int id) throws JsonProcessingException {
 
 		memberService.deleteMemberById(id);
 

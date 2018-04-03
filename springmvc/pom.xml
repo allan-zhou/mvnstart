@@ -24,7 +24,6 @@
 				<artifactId>slf4j-log4j12</artifactId>
 				<version>1.7.21</version>
 			</dependency>
-			
 			<!-- jackson -->
 			<dependency>
 				<groupId>com.fasterxml.jackson.core</groupId>
@@ -84,6 +83,12 @@
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-jdbc</artifactId>
 				<version>4.3.3.RELEASE</version>
+			</dependency>
+			<!-- aspectjweaver包 -->
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>1.7.1</version>
 			</dependency>
 	</dependencies>
 </project>
