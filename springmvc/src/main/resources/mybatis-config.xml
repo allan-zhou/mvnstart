@@ -4,29 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-	<properties resource="db.properties" />
 
 	<typeAliases>
-		<!-- <typeAlias alias="Member" type="com.zhoujl.pojo.Member" /> -->
-		<!-- <typeAlias alias="Order" type="com.zhoujl.pojo.Order" /> -->
 		<package name="com.zhoujl.pojo"/>
 	</typeAliases>
 
-	<environments default="development">
-		<environment id="development">
-			<transactionManager type="JDBC" />
-			<dataSource type="POOLED">
-				<property name="driver" value="${jdbc.driver}" />
-				<property name="url" value="${jdbc.url}" />
-				<property name="username" value="${jdbc.username}" />
-				<property name="password" value="${jdbc.password}" />
-			</dataSource>
-		</environment>
-	</environments>
-
-	<mappers>
-		<mapper resource="com/zhoujl/mapper/MemberMapper.xml" />
-		<mapper resource="com/zhoujl/mapper/OrderMapper.xml" />
-	</mappers>
 
 </configuration>

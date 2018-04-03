@@ -12,12 +12,20 @@
 		<result property="mobile" column="member_mobile" />
 	</resultMap>
 
+    <sql id="Base_Column_List" >
+      member_id, member_name, member_email, member_mobile
+    </sql>
+    
 	<select id="findAllMembers" resultMap="MemberResult">
-		select * from member
+		select
+		<include refid="Base_Column_List" />
+		from member
 	</select>
 
 	<select id="findMemberById" resultMap="MemberResult">
-		select * from member where member_id=#{id}
+		select
+		<include refid="Base_Column_List" />
+		from member where member_id=#{id}
 	</select>
 
 	<insert id="insertMember" parameterType="Member">
